@@ -194,6 +194,9 @@ function renderLedger() {
   const list = getFilteredTransactions();
   ledgerBody.innerHTML = '';
   emptyState.hidden = list.length !== 0;
+  emptyState.textContent = transactions.length === 0
+  ? "No entries yet. Add your first transaction above — it'll show up here."
+  : 'No entries match these filters.';
 
   list.forEach((t) => {
     const row = document.createElement('div');
