@@ -49,3 +49,6 @@ expense-tracker-abhinand/
 - Basic validation prevents zero/negative amounts and missing dates, with inline error messages.
 - Deleting a transaction asks for confirmation to avoid accidental data loss.
 - Fonts load from Google Fonts. Offline, the app falls back to system fonts and works the same.
+
+
+**Live demo:** https://abhinand44git.github.io/expense-tracker-abhinand/
