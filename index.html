@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ledger — Expense Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="brand">
+      <span class="brand-mark">§</span>
+      <h1>Ledger</h1>
+    </div>
+    <p class="tagline">A running account of what comes in and what goes out.</p>
+  </div>
+</header>
+
+<main class="page">
+
+  <section class="balance-block" aria-label="Summary">
+    <div class="balance-figure">
+      <span class="balance-label">Current balance</span>
+      <span class="balance-amount" id="balanceAmount">₹0.00</span>
+    </div>
+    <div class="balance-stats">
+      <div class="stat">
+        <span class="stat-label">Income</span>
+        <span class="stat-value income" id="totalIncome">₹0.00</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Expenses</span>
+        <span class="stat-value expense" id="totalExpense">₹0.00</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">This month</span>
+        <span class="stat-value" id="monthNet">₹0.00</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="entry-block" aria-label="Add a transaction">
+    <h2>New entry</h2>
+    <form id="transactionForm" novalidate>
+      <input type="hidden" id="editId" value="">
+
+      <div class="field-row">
+        <fieldset class="type-toggle">
+          <legend class="visually-hidden">Transaction type</legend>
+          <label class="toggle-option">
+            <input type="radio" name="type" value="income" checked>
+            <span>Income</span>
+          </label>
+          <label class="toggle-option">
+            <input type="radio" name="type" value="expense">
+            <span>Expense</span>
+          </label>
+        </fieldset>
+      </div>
+
+      <div class="field-row three-up">
+        <div class="field">
+          <label for="amount">Amount</label>
+          <input type="number" id="amount" step="0.01" min="0.01" placeholder="0.00" required>
+          <span class="field-error" id="amountError"></span>
+        </div>
+        <div class="field">
+          <label for="category">Category</label>
+          <select id="category" required>
+            <option value="" disabled selected>Choose one</option>
+          </select>
+          <span class="field-error" id="categoryError"></span>
+        </div>
+        <div class="field">
+          <label for="date">Date</label>
+          <input type="date" id="date" required>
+          <span class="field-error" id="dateError"></span>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field grow">
+          <label for="description">Description</label>
+          <input type="text" id="description" placeholder="What was this for?" maxlength="120">
+        </div>
+      </div>
+
+      <div class="field-row actions">
+        <button type="submit" class="btn-primary" id="submitBtn">Add entry</button>
+        <button type="button" class="btn-ghost" id="cancelEditBtn" hidden>Cancel edit</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="ledger-block" aria-label="Transactions">
+    <div class="ledger-header">
+      <h2>Entries</h2>
+      <div class="filters" role="tablist" aria-label="Filter transactions">
+        <button class="filter-btn is-active" data-filter="all" role="tab" aria-selected="true">All</button>
+        <button class="filter-btn" data-filter="income" role="tab" aria-selected="false">Income</button>
+        <button class="filter-btn" data-filter="expense" role="tab" aria-selected="false">Expenses</button>
+        <select id="categoryFilter" class="category-filter" aria-label="Filter by category">
+          <option value="all">All categories</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="ledgerTable" class="ledger-table" role="table" aria-label="Transaction list">
+      <div class="ledger-row ledger-row-head" role="row">
+        <span role="columnheader">Date</span>
+        <span role="columnheader">Description</span>
+        <span role="columnheader">Category</span>
+        <span role="columnheader" class="align-right">Amount</span>
+        <span role="columnheader" class="align-right">Actions</span>
+      </div>
+      <div id="ledgerBody"></div>
+      <p id="emptyState" class="empty-state" hidden>No entries yet. Add your first transaction above — it'll show up here.</p>
+    </div>
+  </section>
+
+  <section class="summary-block" aria-label="Monthly summary and category breakdown">
+    <div class="summary-col">
+      <h2>Monthly summary</h2>
+      <div id="monthlySummary" class="monthly-list"></div>
+    </div>
+    <div class="summary-col">
+      <h2>Spending by category</h2>
+      <div id="categoryChart" class="category-chart"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="page-footer">
+  <p>Stored locally in your browser. Nothing leaves this device.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
