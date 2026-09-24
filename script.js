@@ -38,11 +38,24 @@ const categoryFilterSelect = document.getElementById('categoryFilter');
 function loadTransactions() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? JSON.parse(raw) : [];
+    const data = raw ? JSON.parse(raw) : [];
+    if (!Array.isArray(data)) return [];
+    return data.filter(isValidTransaction);
   } catch (e) {
     console.error('Could not read saved transactions, starting fresh.', e);
     return [];
   }
+}
+
+function isValidTransaction(t) {
+  return (
+    t &&
+    typeof t.id === 'string' &&
+    (t.type === 'income' || t.type === 'expense') &&
+    typeof t.amount === 'number' &&
+    typeof t.category === 'string' &&
+    typeof t.date === 'string'
+  );
 }
 
 function saveTransactions() {
