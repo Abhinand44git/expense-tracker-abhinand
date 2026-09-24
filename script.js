@@ -187,7 +187,7 @@ function getFilteredTransactions() {
   return transactions
     .filter((t) => activeTypeFilter === 'all' || t.type === activeTypeFilter)
     .filter((t) => activeCategoryFilter === 'all' || t.category === activeCategoryFilter)
-    .sort((a, b) => (a.date < b.date ? 1 : -1));
+    .sort((a, b) => b.date.localeCompare(a.date) || b.id.localeCompare(a.id));
 }
 
 function renderLedger() {
