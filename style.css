@@ -380,6 +380,7 @@ input:focus-visible, select:focus-visible, button:focus-visible {
   overflow: hidden;
 }
 .chart-fill {
+  display: block;
   height: 100%;
   background: var(--expense);
 }
