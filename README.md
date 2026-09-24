@@ -1,5 +1,7 @@
 # Ledger — Expense Tracker
 
+**Live demo:** https://abhinand44git.github.io/expense-tracker-abhinand/
+
 A simple expense tracker built with plain HTML, CSS, and JavaScript, submitted for the LTS Software Developer Intern task.
 
 ## Features
@@ -46,9 +48,6 @@ expense-tracker-abhinand/
 - No external JS libraries or frameworks — vanilla JS as requested, using `localStorage` for persistence.
 - Categories are split into income-specific and expense-specific lists that swap automatically based on the selected transaction type.
 - The category-wise chart is a simple horizontal bar visualization built with CSS, so it needs no charting library.
-- Basic validation prevents zero/negative amounts and missing dates, with inline error messages.
+- Basic validation prevents zero/negative amounts, a missing category, and missing dates, with inline error messages.
 - Deleting a transaction asks for confirmation to avoid accidental data loss.
 - Fonts load from Google Fonts. Offline, the app falls back to system fonts and works the same.
-
-
-**Live demo:** https://abhinand44git.github.io/expense-tracker-abhinand/
