@@ -115,6 +115,9 @@ function validateForm() {
   if (isNaN(amount) || amount <= 0) {
     amountError.textContent = 'Enter an amount greater than 0.';
     valid = false;
+  } else if (amount > 99999999.99) {
+    amountError.textContent = 'Amount is too large (max 99,999,999.99).';
+    valid = false;
   }
 
   if (!categorySelect.value) {
