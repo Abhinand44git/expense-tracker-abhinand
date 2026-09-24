@@ -32,13 +32,13 @@ python3 -m http.server 8000
 
 ## Project structure
 
-\`\`\`
+```
 expense-tracker-abhinand/
 ├── index.html      # Page structure
 ├── style.css       # Design system and layout
 ├── script.js       # App logic: storage, CRUD, filters, summaries, chart
 └── README.md
-\`\`\`
+```
 
 
 ## Notes on approach
